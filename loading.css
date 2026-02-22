@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow: hidden;
+    background: #0f1115;
+    color: #ffffff;
+}
+
+/* ========================================
+   LOADER CONTAINER - Full Screen Grid
+======================================== */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0f1115;
+    z-index: 9999;
+    display: grid;
+    overflow: hidden;
+    will-change: opacity;
+}
+
+.loader-container.fade-out {
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+    pointer-events: none;
+}
+
+/* ========================================
+   GRID SQUARE TILES
+======================================== */
+.grid-square {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 15x;
+    
+    opacity: 0;
+    transform: scale(0.85);
+    will-change: transform, opacity;
+    transition: 
+        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.4s ease-out;
+}
+
+/* Appearance state */
+.grid-square.appear {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Disappearance state */
+.grid-square.disappear {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+/* ========================================
+   MAIN CONTENT
+======================================== */
+.main-content {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(10px);
+    will-change: opacity, transform;
+}
+
+.main-content.reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 
+        opacity 0.6s ease-out,
+        transform 0.6s ease-out;
+}
+
+.content-wrapper {
+    text-align: center;
+    padding: 40px;
+}
+
+.content-wrapper h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.content-wrapper p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+======================================== */
+@media (max-width: 768px) {
+    .content-wrapper h1 {
+        font-size: 2rem;
+    }
+    
+    .content-wrapper p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-wrapper h1 {
+        font-size: 1.5rem;
+    }
+}
